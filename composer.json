@@ -1,0 +1,18 @@
+{
+   "require": {
+        "silex/silex": "1.0.*@dev",
+        "knplabs/repository-service-provider": "dev-master",
+        "monolog/monolog": ">=1.0.0",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "doctrine/dbal": "2.2.*",
+        "ricbra/php-discogs-api": ">=0.5",
+        "symfony/twig-bridge": "2.*",
+        "igorw/config-service-provider": "~1.1",
+        "themattharris/tmhoauth": "dev-master",
+        "symfony/security": "2.4.*@dev",
+        "symfony/validator": "2.4.*@dev"
+     },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}

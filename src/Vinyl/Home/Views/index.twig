@@ -1,0 +1,9 @@
+{% extends 'Core/Views/base.twig' %}
+
+{% block title 'changed the core title' %}
+
+{% block body %}
+    {{ path('homepage')}} {# -> `/hello/Bramus` #}
+    {{ path('discogs', {name: 'Bramus'}) }} {# -> `/hello/Bramus` #}
+    {{ app.request.getPathInfo() }}
+{% endblock %}
