@@ -73,6 +73,9 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/config.php'));
 
 $app->register(new SecurityServiceProvider(), array(
     'security.firewalls' =>  array(
+        'unsecured' => array(
+            'anonymous' => true,
+        ),
         'admin' => array(
             'pattern' => '^/admin',
             'http' => true,
