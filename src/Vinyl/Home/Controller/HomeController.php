@@ -47,8 +47,15 @@ class HomeController implements ControllerProviderInterface
 
     public function index(Application $app)
     {
-        $test = $app['security']->isGranted('ROLE_ADMIN');
-        Debug::dump($test);
+        $token = $app['security']->getToken();
+        $user = $token->getUser();
+        // Debug::dump($user);
+        // if ($app['security']->isGranted('ROLE_ADMIN')) {
+        //     echo 'jeet';
+        // }
+
+        // $test = $app['security']->isGranted('ROLE_ADMIN');
+        // Debug::dump($test);
         // $schema = $app['db']->getSchemaManager();
         // $this->_oAuth->serviceName = 'Discogs';
         // $code = $this->_oAuth->request('GET', $this->_oAuth->url('oauth/request_token', ''), array(
@@ -61,7 +68,7 @@ class HomeController implements ControllerProviderInterface
         // Debug::dump($code);
 
 
-        Debug::dump($app['security.firewalls']);
+        // Debug::dump($app['security.firewalls']);
 
 
         // $service = new \Discogs\Service();
