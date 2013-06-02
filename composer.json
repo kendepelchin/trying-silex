@@ -10,7 +10,11 @@
         "igorw/config-service-provider": "~1.1",
         "themattharris/tmhoauth": "dev-master",
         "symfony/security": "2.4.*@dev",
-        "symfony/validator": "2.4.*@dev"
+        "symfony/form": "2.2.*@dev",
+        "symfony/validator": "2.2.*@dev",
+        "symfony/config": "2.2.*@dev",
+        "symfony/translation": "2.2.*@dev",
+        "symfony/locale": "2.2.*@dev"
      },
     "autoload": {
         "psr-0": {"": "src/"}

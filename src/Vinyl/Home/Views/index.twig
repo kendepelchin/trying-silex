@@ -2,13 +2,11 @@
 
 {% block javascript %}
 	{{ parent() }}
-
+	
 {% endblock %}
 
 {% block title 'Home!' %}
 
 {% block body %}
- {#   {{ path('homepage')}} 
-    {{ path('discogs', {name: 'Bramus'}) }}
-    {{ app.request.getPathInfo() }} #}
+
 {% endblock %}

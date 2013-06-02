@@ -12,10 +12,11 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
+use Silex\Provider\FormServiceProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+
 use Vinyl\User\Provider\UserProvider;
 
-// use Silex\Provider\FormServiceProvider;
 
 /**
  * Application Configuration.
@@ -96,5 +97,5 @@ $app->register(new Knp\Provider\RepositoryServiceProvider(), array(
     )
 ));
 
-// $app->register(new FormServiceProvider());
+$app->register(new FormServiceProvider());
 // $app->register(new Silex\Provider\ValidatorServiceProvider());
