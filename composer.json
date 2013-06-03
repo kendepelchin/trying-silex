@@ -14,7 +14,8 @@
         "symfony/validator": "2.2.*@dev",
         "symfony/config": "2.2.*@dev",
         "symfony/translation": "2.2.*@dev",
-        "symfony/locale": "2.2.*@dev"
+        "symfony/locale": "2.2.*@dev",
+        "symfony/yaml": "2.2.*@dev"
      },
     "autoload": {
         "psr-0": {"": "src/"}

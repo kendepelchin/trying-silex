@@ -98,4 +98,7 @@ $app->register(new Knp\Provider\RepositoryServiceProvider(), array(
 ));
 
 $app->register(new FormServiceProvider());
-// $app->register(new Silex\Provider\ValidatorServiceProvider());
+$app->register(new Silex\Provider\ValidatorServiceProvider());
+$app->register(new Silex\Provider\TranslationServiceProvider(), array(
+    'locale_fallback' => 'en',
+));
