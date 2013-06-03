@@ -110,7 +110,7 @@ abstract class CoreController implements ControllerProviderInterface
      * @param array $parameters
      * @return string
      */
-    protected function renderView($view, array $parameters = array())
+    protected function render($view, array $parameters = array())
     {
         return $this->getTwig()->render($view, $parameters);
     }

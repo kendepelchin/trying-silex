@@ -51,7 +51,7 @@ class UserController extends CoreController {
 	    }
 
 	    // display the form
-	    return $this->getTwig()->render('User/Views/register.twig', array(
+	    return $this->render('User/Views/register.twig', array(
 	    	'form' => $form->createView())
     	);
 	}
