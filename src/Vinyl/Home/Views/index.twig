@@ -1,12 +1,17 @@
 {% extends 'Core/Views/base.twig' %}
 
-{% block javascript %}
+{% block title 'Home!' %}
+
+{% block stylesheet %}
 	{{ parent() }}
 	
 {% endblock %}
 
-{% block title 'Home!' %}
-
 {% block body %}
 
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	
 {% endblock %}

@@ -20,6 +20,11 @@ class UserProvider implements UserProviderInterface
         $this->conn = $conn;
     }
 
+    /**
+     * username is email
+     * @param  [type] $username [description]
+     * @return [type]           [description]
+     */
     public function loadUserByUsername($username)
     {
         $stmt = $this->conn->executeQuery('SELECT * FROM users WHERE username = ?', array(strtolower($username)));
@@ -28,7 +33,7 @@ class UserProvider implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
 
-        return new User($user['username'], $user['password'], explode(',', $user['roles']), true, true, true, true);
+        return new User($user['username'], $user['password'], explode(',', $user['roles']));
     }
 
     public function refreshUser(UserInterface $user)

@@ -16,12 +16,9 @@ class User implements UserInterface
     private $username;
     private $password;
     private $enabled;
-    private $accountNonExpired;
-    private $credentialsNonExpired;
-    private $accountNonLocked;
     private $roles;
 
-    public function __construct($username, $password, array $roles = array(), $enabled = true, $userNonExpired = true, $credentialsNonExpired = true, $userNonLocked = true)
+    public function __construct($username, $password, array $roles = array(), $enabled = true)
     {
         if (empty($username)) {
             throw new \InvalidArgumentException('The username cannot be empty.');
@@ -30,9 +27,6 @@ class User implements UserInterface
         $this->username = $username;
         $this->password = $password;
         $this->enabled = $enabled;
-        $this->accountNonExpired = $userNonExpired;
-        $this->credentialsNonExpired = $credentialsNonExpired;
-        $this->accountNonLocked = $userNonLocked;
         $this->roles = $roles;
     }
 
@@ -66,30 +60,6 @@ class User implements UserInterface
     public function getUsername()
     {
         return $this->username;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isAccountNonExpired()
-    {
-        return $this->accountNonExpired;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isAccountNonLocked()
-    {
-        return $this->accountNonLocked;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isCredentialsNonExpired()
-    {
-        return $this->credentialsNonExpired;
     }
 
     /**

@@ -2,88 +2,43 @@
 
 namespace Vinyl\Home\Controller;
 
-use Silex\Application;
-use Silex\ControllerProviderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Silex\ControllerCollection;
 use Vinyl\Debug\Util\Debug;
-use tmhOAuth;
-use Doctrine\DBAL\Schema\Table;
-use Silex\Application\SecurityTrait;
+use Vinyl\Core\Controller\CoreController;
+use Symfony\Component\HttpFoundation\Request;
 
-class HomeController implements ControllerProviderInterface
+class HomeController extends CoreController
 {
-    protected $_oAuth;
-
-    public function init(Request $request, Application $app) 
+    public function init(Request $request)
     {
-        // set up oauth
-        $this->_oAuth = new tmhOAuth(array(
-              'consumer_key' => $app['api.discogs']['consumer_key'],
-              'consumer_secret' => $app['api.discogs']['consumer_secret'],
-              'timestamp' => true,
-              'host' => 'api.discogs.com',
-              'nonce' => true
-        ));
-
-        $this->callback = "http://{$_SERVER['SERVER_NAME']}/";
+        echo 'before';
     }
 
-    public function connect(Application $app)
+    protected function getRoutes(ControllerCollection $controllers)
     {
-        // Debug::dump($this->app);
-        // creates a new controller based on the default route
-        $controllers = $app['controllers_factory'];
-
-        // init
+         // init
         $controllers->get('/', array($this, 'index'))->before(array($this, 'init'));
 
-        // routing 
         $controllers->get('/', array($this, 'index'))->bind('homepage');
-        $controllers->get('/login', array($this, 'login'))->bind('login');
-        $controllers->get('/discogs/{name}', array($this, 'discogs'))->bind('discogs');
-
+        $controllers->get('/login', array($this, 'loginAction'))->bind('login');
         return $controllers;
     }
 
-    public function index(Application $app)
+    public function index( )
     {
-        $token = $app['security']->getToken();
-        $user = $token->getUser();
-        // Debug::dump($user);
-        // if ($app['security']->isGranted('ROLE_ADMIN')) {
-        //     echo 'jeet';
-        // }
+        // $token = $this->getSecurity()->getToken();
+        // Debug::dump($token);
+        // var_dump($this->security);
+        $user = $this->getUser();
 
-        // $test = $app['security']->isGranted('ROLE_ADMIN');
-        // Debug::dump($test);
-        // $schema = $app['db']->getSchemaManager();
-        // $this->_oAuth->serviceName = 'Discogs';
-        // $code = $this->_oAuth->request('GET', $this->_oAuth->url('oauth/request_token', ''), array(
-        //     'oauth_callback' => $this->callback . '/connect'
-        // ));
-        // die();
-
-        // Debug::dump($this->_oAuth->extract_params($this->_oAuth->response['response']));
-        // Debug::dump($this->_oAuth->url);
-        // Debug::dump($code);
-
-
-        // Debug::dump($app['security.firewalls']);
-
-
-        // $service = new \Discogs\Service();
-        // $result = $service->search(array('q' => 'test'));
-        // $result =  $result->getIterator();
-
-        // Debug::dump($result);
-        return $app['twig']->render(
+        return $this->getTwig()->render(
             'Home/Views/index.twig'
         );
     }
 
-    public function discogs(Application $app, $name) {
+    public function discogs($name) {
         Debug::dump($name);
-        return $app['twig']->render(
+        return $this->getTwig()->render(
             'Home/Views/index.twig'
         );
         // $service = new \Discogs\Service();
@@ -93,8 +48,8 @@ class HomeController implements ControllerProviderInterface
         // return $service;
     }
 
-    public function login(Application $app, Request $request) {
-        return $app['twig']->render('Home/Views/login.twig', array(
+    public function login(Request $request) {
+        return $this->getTwig()->render('Home/Views/login.twig', array(
             'error'         => $app['security.last_error']($request),
             'last_username' => $app['session']->get('_security.last_username'),
         ));

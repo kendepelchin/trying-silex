@@ -20,14 +20,14 @@ use Vinyl\User\Provider\UserProvider;
 
 /**
  * Application Configuration.
- * 
+ *
  */
 $app = new Silex\Application();
 $app['debug'] = true;
 
 /**
  * MONOLOG - For logging.
- * 
+ *
  */
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/development.log',
@@ -35,7 +35,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 /**
  * Twig - Template Engine.
- * 
+ *
  */
 $app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../src/Vinyl'
@@ -46,7 +46,7 @@ $app->register(new UrlGeneratorServiceProvider());
 
 /**
  * Doctrine - Database Access.
- * 
+ *
  */
 $app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
