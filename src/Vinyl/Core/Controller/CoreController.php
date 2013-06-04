@@ -11,10 +11,11 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Translation\Translator;
+use Vinyl\Debug\Util\Debug;
 
 abstract class CoreController implements ControllerProviderInterface
 {
-    protected $app;
+    public $app;
 
     public function connect(Application $app) {
         $this->app = $app;
@@ -91,6 +92,11 @@ abstract class CoreController implements ControllerProviderInterface
     protected function getSecurity()
     {
         return $this->app['security'];
+    }
+
+    protected function getEncoderFactory()
+    {
+        return $this->app['security.encoder_factory'];
     }
 
     /**

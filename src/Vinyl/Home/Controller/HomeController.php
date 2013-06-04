@@ -20,11 +20,11 @@ class HomeController extends CoreController
         $controllers->get('/', array($this, 'index'))->before(array($this, 'init'));
 
         $controllers->get('/', array($this, 'index'))->bind('homepage');
-        $controllers->get('/login', array($this, 'loginAction'))->bind('login');
+        $controllers->get('/login', array($this, 'login'))->bind('login');
         return $controllers;
     }
 
-    public function index( )
+    public function index()
     {
         // $token = $this->getSecurity()->getToken();
         // Debug::dump($token);
@@ -46,12 +46,5 @@ class HomeController extends CoreController
         // va::dump($app);
         // var_dump($app->redirect('/'));
         // return $service;
-    }
-
-    public function login(Request $request) {
-        return $this->getTwig()->render('Home/Views/login.twig', array(
-            'error'         => $app['security.last_error']($request),
-            'last_username' => $app['session']->get('_security.last_username'),
-        ));
     }
 }

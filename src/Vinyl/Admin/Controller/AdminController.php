@@ -3,37 +3,26 @@
 namespace Vinyl\Admin\Controller;
 
 use Silex\Application;
+use Silex\ControllerCollection;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Vinyl\Core\Controller\CoreController;
 use Vinyl\Debug\Util\Debug;
 
-class AdminController implements ControllerProviderInterface
+class AdminController extends CoreController
 {
-    public function init(Request $request, Application $app) 
+     protected function getRoutes(ControllerCollection $controllers)
     {
-
-    }
-
-    public function connect(Application $app)
-    {
-        // Debug::dump($this->app);
-        // creates a new controller based on the default route
-        $controllers = $app['controllers_factory'];
-
-        // init
-        // $controllers->get('/', array($this, 'index'))->before(array($this, 'init'));
-
-        // routing 
-        $controllers->get('/', array($this, 'admin'));
-
+        $controllers->get('/', array($this, 'admin'))->bind('admin');
         return $controllers;
     }
 
-    public function admin(Application $app)
+    public function admin()
     {
-        $token = $app['security']->getToken();
-        $user = $token->getUser();
+        $user = $this->getUser();
         var_dump($user);
-        echo 'admin moatjen';
+        return $this->getTwig()->render('Admin/Views/admin.twig', array(
+
+        ));
     }
 }
