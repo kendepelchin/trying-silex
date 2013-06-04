@@ -25,20 +25,6 @@ class UserController extends CoreController {
 
 	public function register(Request $request) {
 		$form = new RegisterForm($this->getFormFactory());
-		// $form = $this->getFormFactory()->createBuilder('form')
-		//     ->add('email', 'email', array(
-		//         'constraints' => array(
-		//         	new Assert\Email(),
-		//         	new Assert\NotBlank()
-	 //        	),
-	 //        	'attr' => array('placeholder' => 'Your email')
-		//     ))
-		//     ->add('password', 'password', array(
-		//         'constraints' => array(
-		//             new Assert\NotBlank(),
-		//             new Assert\Length(array('max' => 30))
-		//         )
-		//     ))->getForm();
 
 	    if ('POST' == $request->getMethod()) {
 	        $form->bind($request);
@@ -48,6 +34,7 @@ class UserController extends CoreController {
 
 	            $user = array();
 	            $user['username'] = $data['email'];
+	            $user['dateadd'] = date('Y-m-d H:i:s');
 	            $user['roles'] = 'ROLE_USER';
 	            $user['password'] = $this->app['security.encoder.digest']->encodePassword($data['password'], "");
 
@@ -55,6 +42,11 @@ class UserController extends CoreController {
 
 	            if (!$exists) {
 	            	$result = $this->app['users']->insert($user);
+	            	echo 'user already exists.';
+	            }
+
+	            else {
+	            	echo 'user created!';
 	            }
 
 	            // redirect somewhere
