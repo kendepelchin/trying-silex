@@ -36,7 +36,7 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/config.php'));
  *
  */
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__ . 'logs/' . date('Y:m:d') . 'development.log',
+    'monolog.logfile' => __DIR__ . '/../logs/' . date('Y:m:d') . 'development.log',
 ));
 
 /**
