@@ -14,4 +14,5 @@ return array(
         'consumer_key' => 'YxVwmymcXeQEkcXxdqZv',
         'consumer_secret' => 'cIPHAdkoChFCgCRdrkCuRVYNbONZljbo'
     ),
+    'salt' => 'salt'
 );

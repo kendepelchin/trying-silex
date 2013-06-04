@@ -26,11 +26,17 @@ $app = new Silex\Application();
 $app['debug'] = true;
 
 /**
+ * For configs!
+ *
+ */
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/config.php'));
+
+/**
  * MONOLOG - For logging.
  *
  */
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => __DIR__ . '/development.log',
+    'monolog.logfile' => __DIR__ . 'logs/' . date('Y:m:d') . 'development.log',
 ));
 
 /**
@@ -65,23 +71,14 @@ $app->register(new DoctrineServiceProvider(), array(
  */
 $app->register(new SessionServiceProvider());
 
-/**
- * For configs!
- *
- */
-$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__ . '/config.php'));
-
-
 $app->register(new SecurityServiceProvider(), array(
     'security.firewalls' =>  array(
-        // 'unsecured' => array(
-        //     'anonymous' => true,
-        // ),
         'admin' => array(
-            'pattern' => '^/admin',
+            'anonymous'=>array(),
+            'pattern' => '^/',
             'http' => true,
-            'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-            'logout' => array('logout_path' => '/admin/logout'),
+            'form' => array('login_path' => '/user/login', 'check_path' => '/admin/login_check'),
+            'logout' => array('logout_path' => '/user/logout'),
             'users' => $app->share(function() use ($app){
                 return new UserProvider($app['db']);
             })
