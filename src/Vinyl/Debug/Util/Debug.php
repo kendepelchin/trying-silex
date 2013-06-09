@@ -2,10 +2,15 @@
 
 namespace Vinyl\Debug\Util;
 
-use Silex\Application;
 use Monolog\Logger;
 use Doctrine\DBAL\Connection;
+use Silex\Application;
 
+/**
+ * Debug class
+ *
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
 class Debug
 {
 	public static $DUMP_MAX_WIDTH = 50;

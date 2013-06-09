@@ -2,15 +2,22 @@
 
 namespace Vinyl\User\Provider;
 
-use Doctrine\DBAL\Connection;
-use Vinyl\User\Entity\User;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
+use Vinyl\User\Entity\User;
+
+/**
+ * Custom user Provider
+ *
+ * @implements Symfony\Component\Security\Core\User\UserProviderInterface
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
 class UserProvider implements UserProviderInterface
 {
     private $conn;

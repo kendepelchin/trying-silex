@@ -11,6 +11,12 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ExecutionContext;
 
+/**
+ * Our user class
+ *
+ * @implements Symfony\Component\Security\Core\User\UserInterface
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
 class User implements UserInterface
 {
     private $username;

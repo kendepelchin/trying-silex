@@ -11,8 +11,14 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Translation\Translator;
+
 use Vinyl\Debug\Util\Debug;
 
+/**
+ * Base Controller
+ *
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
 abstract class CoreController implements ControllerProviderInterface
 {
     public $app;

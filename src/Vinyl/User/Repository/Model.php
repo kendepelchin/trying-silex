@@ -2,7 +2,15 @@
 
 namespace Vinyl\User\Repository;
 
-class Model extends \Knp\Repository {
+use Knp\Repository;
+
+/**
+ * Our User model to handle our user database entity
+ *
+ * @implements Knp\Repository
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
+class Model extends Repository {
 	public function getTableName() {
 		return 'users';
 	}
@@ -18,5 +26,4 @@ class Model extends \Knp\Repository {
 	public function getLinks($id) {
 		return $this->db->fetchAll('SELECT * FROM links WHERE added_by = ?', array($id));
 	}
-
 }

@@ -3,17 +3,23 @@
 namespace Vinyl\User\Controller;
 
 use Silex\Application;
-use Silex\ControllerProviderInterface;
 use Silex\ControllerCollection;
+use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Vinyl\Debug\Util\Debug;
+
 use Vinyl\Core\Controller\CoreController;
+use Vinyl\Debug\Util\Debug;
 use Vinyl\User\Entity\User;
 use Vinyl\User\Repository\Model;
-
 use Vinyl\User\Controller\RegisterForm;
 
+/**
+ * Routing for our user controller
+ *
+ * @author  Ken Depelchin <ken.depelchin@gmail.com>
+ */
 class UserController extends CoreController {
+	public function init(Request $request) {}
 
 	protected function getRoutes(ControllerCollection $controllers) {
 		$controllers->get('/register', array($this, 'register'))->method('POST');
