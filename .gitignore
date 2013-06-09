@@ -6,5 +6,5 @@ resources/
 *.sublime-*
 
 #except this
-!resources/model.db
+!resources/model.mwb
 
