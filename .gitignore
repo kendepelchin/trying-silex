@@ -1,10 +1,10 @@
-#ignore this:
+# do not ignore these:
+!resources/model.mwb
+
+# but do ignore these:
 vendor/
 composer.phar
 logs/
 resources/
 *.sublime-*
-
-#except this
-!resources/model.mwb
 
