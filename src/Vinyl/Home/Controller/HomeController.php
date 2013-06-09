@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Vinyl\Core\Controller\CoreController;
 use Vinyl\Debug\Util\Debug;
+use Vinyl\Services\Util\LastFm;
 
 /**
  * Routing for our home controller
