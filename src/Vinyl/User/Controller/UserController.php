@@ -55,20 +55,20 @@ class UserController extends CoreController {
 	    }
 
 	    // display the form
-	    return $this->render('User/Views/register.twig', array(
+	    return $this->render('user/register.twig', array(
 	    	'form' => $form->getForm()->createView())
     	);
 	}
 
 	public function login(Request $request) {
-        return $this->getTwig()->render('Home/Views/login.twig', array(
+        return $this->getTwig()->render('user/login.twig', array(
             'error'         => $this->app['security.last_error']($request),
             'last_username' => $this->app['session']->get('_security.last_username'),
         ));
     }
 
     public function logout(Request $request) {
-    	return $this->getTwig()->render('Home/Views/logout.twig', array(
+    	return $this->getTwig()->render('home/logout.twig', array(
 
 		));
     }

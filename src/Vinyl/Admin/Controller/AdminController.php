@@ -21,7 +21,7 @@ class AdminController extends CoreController
     {
         $user = $this->getUser();
         var_dump($user);
-        return $this->getTwig()->render('Admin/Views/admin.twig', array(
+        return $this->getTwig()->render('admin/admin.twig', array(
 
         ));
     }

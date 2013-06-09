@@ -32,14 +32,14 @@ class HomeController extends CoreController
         $user = $this->getUser();
 
         return $this->getTwig()->render(
-            'Home/Views/index.twig'
+            'home/index.twig'
         );
     }
 
     public function discogs($name) {
         Debug::dump($name);
         return $this->getTwig()->render(
-            'Home/Views/index.twig'
+            'home/index.twig'
         );
         // $service = new \Discogs\Service();
         // $label = $service->getArtist('DaftPunk');

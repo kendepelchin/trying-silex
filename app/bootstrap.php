@@ -44,7 +44,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
  *
  */
 $app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/../src/Vinyl'
+    'twig.path' => __DIR__ . '/../web/public/views'
 ));
 
 // shorthands

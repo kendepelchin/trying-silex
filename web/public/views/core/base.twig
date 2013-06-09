@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Vinyl homepage{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block stylesheet %}
+            <link href="http://necolas.github.io/normalize.css/2.1.2/normalize.css" rel="stylesheet" media="screen">
+            <link href="/public/core/css/bootstrap.min.css" rel="stylesheet" media="screen">
+            <link href="/public/core/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <a class="btn btn-primary">test</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ path('login') }}">Login</a>
+            {% endif %}
+            {% block body %}
+
+            {% endblock %}
+        </div>
+    </body>
+
+    {# Javascript - core #}
+    {% block javascript %}
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="/public/core/js/bootstrap.min.js"></script>
+    {% endblock %}
+</html>
