@@ -19,8 +19,7 @@ use Vinyl\Debug\Util\Debug;
  *
  * @author  Ken Depelchin <ken.depelchin@gmail.com>
  */
-abstract class CoreController implements ControllerProviderInterface
-{
+abstract class CoreController implements ControllerProviderInterface {
     public $app;
 
     public function connect(Application $app) {
@@ -31,85 +30,84 @@ abstract class CoreController implements ControllerProviderInterface
     /**
      * @return ControllerCollection
      */
-    protected function getControllerFactory()
-    {
+    protected function getControllerFactory() {
         return $this->app['controllers_factory'];
     }
 
     /**
      * @return HttpKernel
      */
-    protected function getKernel()
-    {
+    protected function getKernel() {
         return $this->app['kernel'];
     }
 
     /**
      * @return Request
      */
-    protected function getRequest()
-    {
+    protected function getRequest() {
         return $this->app['request'];
     }
 
     /**
      * @return FormFactory
      */
-    protected function getFormFactory()
-    {
+    protected function getFormFactory() {
         return $this->app['form.factory'];
     }
 
     /**
      * @return UrlGenerator
      */
-    protected function getUrlGenerator()
-    {
+    protected function getUrlGenerator() {
         return $this->app['url_generator'];
     }
 
     /**
      * @return \Twig_Environment
      */
-    protected function getTwig()
-    {
+    protected function getTwig() {
         return $this->app['twig'];
     }
 
     /**
      * @return EntityManager
      */
-    protected function getEntityManager()
-    {
+    protected function getEntityManager() {
         return $this->app['orm.em'];
     }
 
     /**
      * @return Translator
      */
-    protected function getTranslator()
-    {
+    protected function getTranslator() {
         return $this->app['translator'];
     }
 
     /**
      * @return SecurityContext
      */
-    protected function getSecurity()
-    {
+    protected function getSecurity() {
         return $this->app['security'];
     }
 
-    protected function getEncoderFactory()
-    {
+    protected function getEncoderFactory() {
         return $this->app['security.encoder_factory'];
+    }
+
+    /**
+     * Get config which is registers in the Config Service Provider
+     *
+     * @param   string       $key      the key to get
+     * @return  array
+     */
+    protected function getServiceConfig($key) {
+        return $this->app[$key];
     }
 
     /**
      * @return User|Null|string
      */
-    protected function getUser()
-    {
+    protected function getUser() {
         if(is_null($this->getSecurity()->getToken())) {
             return null;
         }
@@ -122,8 +120,7 @@ abstract class CoreController implements ControllerProviderInterface
      * @param array $parameters
      * @return string
      */
-    protected function render($view, array $parameters = array())
-    {
+    protected function render($view, array $parameters = array()) {
         return $this->getTwig()->render($view, $parameters);
     }
 }

@@ -10,8 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Vinyl\Core\Controller\CoreController;
 use Vinyl\Debug\Util\Debug;
 use Vinyl\User\Entity\User;
-use Vinyl\User\Repository\Model;
+use Vinyl\User\Repository\UserModel;
 use Vinyl\User\Controller\RegisterForm;
+use Vinyl\Services\Util\LastFmService;
 
 /**
  * Routing for our user controller
@@ -25,7 +26,8 @@ class UserController extends CoreController {
 		$controllers->get('/register', array($this, 'register'))->method('POST');
 		$controllers->get('/register', array($this, 'register'))->bind('register');
 		$controllers->get('/login', array($this, 'login'))->bind('login');
-		$controllers->get('/logout', array($this, 'login'))->bind('logout');
+		$controllers->get('/logout', array($this, 'logout'))->bind('logout');
+		$controllers->get('/lastfm', array($this, 'lastfm'))->bind('lastfm');
 		return $controllers;
 	}
 
@@ -48,15 +50,19 @@ class UserController extends CoreController {
 
 	            if (!$exists) {
 	            	$result = $this->app['users']->insert($user);
-	            	echo 'user already exists.';
-	            }
 
-	            else {
+	            	if ($result) {
+	            		$user = $this->app['users']->findUser($user['username']);
+	            	}
 	            	echo 'user created!';
 	            }
 
+	            else {
+	            	echo 'user already exists.';
+	            }
+
 	            // redirect somewhere
-	            // return $app->redirect('');
+	            return $this->app->redirect('login');
 	        }
 	    }
 
@@ -77,5 +83,21 @@ class UserController extends CoreController {
     	return $this->getTwig()->render('home/logout.twig', array(
 
 		));
+    }
+
+    public function lastfm(Request $request) {
+		$service = new LastFmService($this->getUser(), $this->getServiceConfig('api.lastfm'), $this->app['debug']);
+
+    	if ($request->get('token')) {
+    		// do the call to get all the shanigans
+    		Debug::dump($request->get('token'));
+    		var_dump($this->getUser());
+    		$service->call('auth.getSession');
+    	}
+    	else {
+    		return $this->app->redirect($service->getRedirectUrl());
+    	}
+
+    	return $this->getTwig()->render('user/lastfm.twig', array());
     }
 }

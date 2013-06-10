@@ -1,6 +1,6 @@
 <?php
 
-namespace Vinyl\Core\Controller;
+namespace Vinyl\Core\Util;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormFactory;

@@ -29,6 +29,9 @@ return array(
             'consumer_key' => '',
             'consumer_secret' => '',
         ),
+        'base' => 'http://www.last.fm/api/auth/',
+        'redirect_url' => 'http://silex.dev:8888/user/lastfm',
+        'format' => 'json',
     ),
     'salt' => 'salt'
 );

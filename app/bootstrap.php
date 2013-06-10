@@ -73,7 +73,7 @@ $app->register(new MonologServiceProvider(), array(
  */
 $app->register(new RepositoryServiceProvider(), array(
         'repository.repositories' => array(
-            'users' => 'Vinyl\\User\\Repository\\Model',
+            'users' => 'Vinyl\\User\\Repository\\UserModel',
     )
 ));
 

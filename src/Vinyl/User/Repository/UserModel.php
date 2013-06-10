@@ -10,13 +10,13 @@ use Knp\Repository;
  * @implements Knp\Repository
  * @author  Ken Depelchin <ken.depelchin@gmail.com>
  */
-class Model extends Repository {
+class UserModel extends Repository {
 	public function getTableName() {
 		return 'users';
 	}
 
 	public function findUser($email) {
-		return $this->db->fetchColumn('SELECT u.* FROM users AS u WHERE u.username = ?', array($email));
+		return $this->db->fetchArray('SELECT u.* FROM users AS u WHERE u.username = ?', array($email));
 	}
 
 	public function getNumLinks($id) {
